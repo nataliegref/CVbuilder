@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import mockData from './Data'
 
 export function App() {
 
   return (
     <>
-    <h1>Welcome to your custom CV builder</h1>
+    <h1 id='welcome'>Welcome to your custom CV builder</h1>
     </>
   )
 }
 
 // eslint-disable-next-line react/prop-types
-function FormItem({item, setItem, title, row=1, col=15}){
+export function FormItem({itemDefault, id, title, divName, row=1, col=15}){
 
-  const [formVisible, setFormVisible] = useState(true);
+  const [item, setItem] = useState(itemDefault)
+  const [formVisible, setFormVisible] = useState(false);
   const [formValue, setFormValue] = useState('')
   const [textAreaWidth, setTextAreaWidth] = useState(col)
 
@@ -31,11 +33,11 @@ function FormItem({item, setItem, title, row=1, col=15}){
     setFormValue(item)
   }
 
-  return (<>
-  <form onSubmit = {handleSubmit}>
-  <span className = 'item'>{title} </span>  
+  return (<div className={divName}>
+  <form onSubmit = {handleSubmit}> 
 
-{  formVisible &&  (
+{  formVisible &&  (<>
+   <span className = 'item'>{title} </span> 
   <textarea rows={row} 
   cols={textAreaWidth}
   value = {formValue}
@@ -44,8 +46,8 @@ function FormItem({item, setItem, title, row=1, col=15}){
     setFormValue(event.target.value)
   }}
     ></textarea> 
+    </>
     )}
-
 
 </form>
 
@@ -56,6 +58,7 @@ handleEdit}>Edit</button>
 </>
   )
 :(<>
+{id.includes('URL') ? (<div id={id}><a href={item} target="_blank">{title}</a></div>) : (<div id={id}>{item}</div>)}
   <button disabled={true} className="disabled-button" onClick={handleSubmit}>Submit</button>
   <button onClick={
   handleEdit}>Edit</button>
@@ -63,38 +66,20 @@ handleEdit}>Edit</button>
     )
     }
   
-</>
+</div>
 )
 }
 
 
-
-
 export function Overview() {
-  const [name, setName] = useState('Jane Smith')
-  const [email, setEmail] = useState('jane@gmail.com')
-  const [phoneNumber, setPhoneNumber] = useState('+99 999 9999')
-  const [exp1, setExp1] = useState('')
   return (
     <>
-    <h2>CV</h2>
-    <FormItem item = {name} setItem = {setName} title={'Full name'}/>
-    <FormItem item = {email} setItem = {setEmail} title={'Email address'}/>
-    <FormItem item = {phoneNumber} setItem = {setPhoneNumber} title={'Phone number'}/>
-    
-    <FormItem item = {exp1} setItem = {setExp1} title={'Experience'} row ={8} col = {50}/>
-    <div id='overview'>
-      <h2>Overview</h2>
-    <div id='name'>{name}</div>
-    <div id='email'>{email}</div>
-    <div id='phone'>{phoneNumber}</div>
-    </div>
-
-    <div id='Experience'>
-    <h2>Education</h2>
-    <div id='exp1'>{exp1}</div>
-    </div>
-
+       <div id='overview'>
+    <FormItem itemDefault = {mockData.name} id={'name'}  title={'Full name'}/>
+    <FormItem itemDefault = {mockData.email} id={'email'} divName = "horizontal-layout" title={'Email address'}/>
+    <FormItem itemDefault = {mockData.phone} id={'phone'} divName = "horizontal-layout" title={'Phone number'}/> 
+    <FormItem itemDefault = {mockData.linkedin} id={'linkedinURL'} divName = "horizontal-layout" title={'Linkedin'}/> 
+</div>
     </>
   )
 }

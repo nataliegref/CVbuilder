@@ -5,12 +5,30 @@
   text-align: center;
 }
 
-.item{
-  font-size: 12px;
+#welcome{
+  font-size: 40px;
+  font-weight: 700;
   color: rgb(148, 142, 142)
+
 }
 
 #overview{
   margin: 0 auto;
   padding: 2rem;
+  background-color: #b9aeae;
+}
+
+#name{
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.item{
+  font-size: 12px;
+  color: rgb(148, 142, 142)
+}
+
+.horizontal-layout {
+  display: inline-block;
+  margin-right: 40px; 
 }
