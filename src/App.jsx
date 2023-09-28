@@ -35,7 +35,6 @@ export function FormItem({itemDefault, id, title, divName, row=1, col=15}){
 
   return (<div className={divName}>
   <form onSubmit = {handleSubmit}> 
-
 {  formVisible &&  (<>
    <span className = 'item'>{title} </span> 
   <textarea rows={row} 
