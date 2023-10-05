@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import {mockData, mockWorkExperience} from './Data'
+import {mockWorkExperience} from './DataWork'
 
 
 // eslint-disable-next-line react/prop-types
@@ -68,16 +68,17 @@ function AddField({item, setItem, id, title, divName, flex=false, row=10, col=50
 
 
 export function WorkExperience() {
-    const [experiences, setExperiences] = useState([mockWorkExperience])
+    const [experiences, setExperiences] = useState([])
     const [showFormItem, setShowFormItem] = useState(false);
 
-    const addExperience = (experience) => {
-        setExperiences([...experiences, experience]);
+    const addExperience = (newExperience) => {
+        setExperiences([...experiences, newExperience]);
       };
 
     const handleAdding = (event => {
         event.preventDefault();
         setShowFormItem(true)
+        addExperience(mockWorkExperience)
     })
 
     // eslint-disable-next-line react/prop-types
@@ -87,22 +88,21 @@ export function WorkExperience() {
       // eslint-disable-next-line react/prop-types
       const [description, setDescription] = useState(experience.description)
 
-      const newExperience = {company: company, d: description}
-
       return (
-        <><AddField item = {company} setItem = {setCompany} id={index}  title={'Company'} flex={true} setExperiences={setExperiences}/>
-        <AddField item = {description} setItem = {setDescription} id={index}  title={'Experience'} setExperiences={setExperiences}/>
+        <><AddField item = {company} setItem = {setCompany} id={index}  title={'Company'} flex={true} />
+        <AddField item = {description} setItem = {setDescription} id={index}  title={'Experience'}/>
         </>
       )
     }
 
-    console.log(experiences)
     return (
       <>
          <div id='workExp'>
         <h2>Work Experience</h2>
         {showFormItem &&(
-        experiences.map((experience, index) => (<AddWorkExperience key={index} experience={experience}/>)))}
+        experiences.map((experience, index) => (
+        console.log('in map'),
+        <AddWorkExperience key={index} experience={experience}/>)))}
       <button onClick={handleAdding}>Add another</button>
   </div>
       </>
