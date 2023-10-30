@@ -1,0 +1,50 @@
+.addButton{
+    border-radius: 8px;
+    border: none;
+    padding: 10px 18px;
+    font-size: 12px;
+    background-color: rgba(62, 61, 61, 0.65);
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.addButton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+.name{
+    font-weight: 700;
+}
+
+.location{
+    font-weight: 500;
+    font-style: italic;
+}
+
+.dates{
+    font-weight: 500;
+    font-style: italic;
+}
+
+.experienceHeader{
+    margin: 0 auto;
+    background-color: #b9aeae7d;
+    display: flex;
+    justify-content: space-between;
+}
+
+.experience{
+    background-color: #b9aeae35;
+    padding: 1rem;
+}
+
+.workExp{
+    margin: 0 0;
+}
+
+.left{
+    display: flex;
+    justify-content: space-between;
+}

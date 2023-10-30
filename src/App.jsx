@@ -74,7 +74,7 @@ export function Overview() {
   return (
     <>
        <div id='overview'>
-    <FormItem itemDefault = {mockData.name} id={'name'}  title={'Full name'}/>
+    <FormItem itemDefault = {mockData.name} id={'personName'}  title={'Full name'}/>
     <FormItem itemDefault = {mockData.email} id={'email'} divName = "horizontal-layout" title={'Email address'}/>
     <FormItem itemDefault = {mockData.phone} id={'phone'} divName = "horizontal-layout" title={'Phone number'}/> 
     <FormItem itemDefault = {mockData.linkedin} id={'linkedinURL'} divName = "horizontal-layout" title={'Linkedin'}/> 

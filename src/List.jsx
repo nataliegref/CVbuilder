@@ -1,6 +1,7 @@
 import { useState, useEffect} from 'react'
 import { v4 as uuid } from 'uuid';
 import {mockWorkExperience} from './DataWork'
+import './List.css'
 
 export function List() {
   const [experiences, setExperiences] = useState([])
@@ -8,8 +9,10 @@ export function List() {
   function addItem() {
     experiences.map(i => i.id)
     setExperiences([...experiences, {
-      id: uuid(), name: mockWorkExperience.name, 
+      id: uuid(), 
+      name: mockWorkExperience.name, 
       location:mockWorkExperience.location,
+      dates: mockWorkExperience.dates,
       description:mockWorkExperience.description
     }])
   }
@@ -61,7 +64,7 @@ export function List() {
 
       return(
           <>
-          <div key={experience.id}>
+          <div className={type} key={experience.id}>
           <form onSubmit={(event) => handleFormSubmit(event, experience.id, type)}>
           {  formVisible ? (<>
           <label className = 'item' id={`${experience.id}-${type}`}>{type}</label>{' '}
@@ -82,8 +85,13 @@ export function List() {
     function WorkExperience({experience}) {
         return(
             <>
+            <div className={'experienceHeader'}>
+              <div className={'left'}>
             <AddField value={experience.name} experience={experience} type={'name'}/>
             <AddField value={experience.location} experience={experience} type={'location'}/>
+            </div>
+            <AddField value={experience.dates} experience={experience} type={'dates'}/>
+            </div>
             <AddField value={experience.description} experience={experience} type={'description'} flex={false}/>
             <button onClick={() => removeItem(experience)}>remove</button>{' '}
             </>
@@ -92,13 +100,14 @@ export function List() {
 
   return (
     <>
-      <div className="keys">
+      <div className="workExp"> 
+      <h1>Work Experience</h1>
         {experiences.map(experience => (
-        <ul key={experience.id}>
+        <div className={"experience"} key={experience.id}>
         <WorkExperience experience={experience}/>
-        </ul>
+        </div>
         ))}
-      <button  onClick={addItem}>Add another </button>
+      <button className='addButton' onClick={addItem}>Add another </button>
       
     </div>
     </>
