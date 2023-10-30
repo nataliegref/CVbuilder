@@ -119,4 +119,21 @@ export function WorkExperience() {
   
 
   //can add new fields but when i add a new it resets the experiences to the original > doesnt save the edits
+
+
+
+  function OldAddField({value, experience, type}) {
+    return(
+        <>
+        <div key={experience.id}>
+        <form onSubmit={(event) => handleSubmit(event, experience.id, type)}><>
+        <label htmlFor={`${experience.id}-${type}`}>{type}</label>{' '}
+        <input id={`${experience.id}-${type}`} defaultValue={value} />
+        </>
+        </form>
+        <div id={'here'}>{value}</div>
+      </div>
+        </>
+    )
+  }
   
